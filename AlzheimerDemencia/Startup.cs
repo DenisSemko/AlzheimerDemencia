@@ -84,3 +84,5 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
     }
 }
+
+// Денис, ты самый красивый
