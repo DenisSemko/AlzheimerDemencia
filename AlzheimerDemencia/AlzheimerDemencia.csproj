@@ -7,17 +7,31 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201023125110_InitialModel.cs" />
     <Compile Remove="Migrations\20201023125110_InitialModel.Designer.cs" />
+    <Compile Remove="Migrations\20201118105728_MmseEntity.cs" />
+    <Compile Remove="Migrations\20201118105728_MmseEntity.Designer.cs" />
+    <Compile Remove="Migrations\20201119092739_MmseEntityModel.cs" />
+    <Compile Remove="Migrations\20201119092739_MmseEntityModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.9.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
 
 </Project>

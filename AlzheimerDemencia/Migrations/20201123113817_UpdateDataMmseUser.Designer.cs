@@ -4,14 +4,16 @@ using AlzheimerDemencia.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlzheimerDemencia.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20201123113817_UpdateDataMmseUser")]
+    partial class UpdateDataMmseUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,15 +78,6 @@ namespace AlzheimerDemencia.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IsFirstObject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IsSecondObject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IsThirdObject")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("MonthQuestion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -147,82 +140,6 @@ namespace AlzheimerDemencia.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("MmseSurvey");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.ObservationNote", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("DoctorUserIdId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("TreatmentIdId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorUserIdId");
-
-                    b.HasIndex("TreatmentIdId");
-
-                    b.ToTable("ObservationNote");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.PatientNote", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("PatientNote");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.Treatment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DateBegin")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("DoctorUserIdId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("PatientUserIdId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorUserIdId");
-
-                    b.HasIndex("PatientUserIdId");
-
-                    b.ToTable("Treatment");
                 });
 
             modelBuilder.Entity("AlzheimerDemencia.Models.User", b =>
@@ -452,35 +369,6 @@ namespace AlzheimerDemencia.Migrations
                     b.HasOne("AlzheimerDemencia.Models.User", "User")
                         .WithMany("MmseSurveys")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.ObservationNote", b =>
-                {
-                    b.HasOne("AlzheimerDemencia.Models.User", "DoctorUserId")
-                        .WithMany("ObservationNotes")
-                        .HasForeignKey("DoctorUserIdId");
-
-                    b.HasOne("AlzheimerDemencia.Models.Treatment", "TreatmentId")
-                        .WithMany("ObservationNotes")
-                        .HasForeignKey("TreatmentIdId");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.PatientNote", b =>
-                {
-                    b.HasOne("AlzheimerDemencia.Models.User", "User")
-                        .WithMany("PatientNotes")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.Treatment", b =>
-                {
-                    b.HasOne("AlzheimerDemencia.Models.User", "DoctorUserId")
-                        .WithMany("TreatmentDoctor")
-                        .HasForeignKey("DoctorUserIdId");
-
-                    b.HasOne("AlzheimerDemencia.Models.User", "PatientUserId")
-                        .WithMany("TreatmentPatient")
-                        .HasForeignKey("PatientUserIdId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

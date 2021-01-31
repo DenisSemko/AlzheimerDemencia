@@ -50,7 +50,8 @@ namespace AlzheimerDemencia.Repository.Concrete
         {
             T entity = myDbContext.Set<T>().Find(id);
             myDbContext.Set<T>().Remove(entity);
-            myDbContext.SaveChangesAsync();
+            Save();
+
         }
 
 

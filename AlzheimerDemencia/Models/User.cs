@@ -18,16 +18,21 @@ namespace AlzheimerDemencia.Models
         [Required]
         public string Surname { get; set; }
 
-        [Required]
         public DateTime BirthDate { get; set; }
 
-        [Required]
         public string Address { get; set; }
 
         [Required]
         public string UserType { get; set; }
         public string Diagnosis { get; set; }
         public DateTime? StartDate { get; set; }
+
+        public ICollection<MmseSurvey> MmseSurveys { get; set; }
+
+        public ICollection<PatientNote> PatientNotes { get; set; }
+        public ICollection<Treatment> TreatmentPatient { get; set; }
+        public ICollection<Treatment> TreatmentDoctor { get; set; }
+        public ICollection<ObservationNote> ObservationNotes { get; set; }
 
 
 

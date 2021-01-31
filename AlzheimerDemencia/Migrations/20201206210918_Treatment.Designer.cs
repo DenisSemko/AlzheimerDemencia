@@ -4,14 +4,16 @@ using AlzheimerDemencia.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlzheimerDemencia.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20201206210918_Treatment")]
+    partial class Treatment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,30 +149,6 @@ namespace AlzheimerDemencia.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("MmseSurvey");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.ObservationNote", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("DoctorUserIdId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("TreatmentIdId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorUserIdId");
-
-                    b.HasIndex("TreatmentIdId");
-
-                    b.ToTable("ObservationNote");
                 });
 
             modelBuilder.Entity("AlzheimerDemencia.Models.PatientNote", b =>
@@ -452,17 +430,6 @@ namespace AlzheimerDemencia.Migrations
                     b.HasOne("AlzheimerDemencia.Models.User", "User")
                         .WithMany("MmseSurveys")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("AlzheimerDemencia.Models.ObservationNote", b =>
-                {
-                    b.HasOne("AlzheimerDemencia.Models.User", "DoctorUserId")
-                        .WithMany("ObservationNotes")
-                        .HasForeignKey("DoctorUserIdId");
-
-                    b.HasOne("AlzheimerDemencia.Models.Treatment", "TreatmentId")
-                        .WithMany("ObservationNotes")
-                        .HasForeignKey("TreatmentIdId");
                 });
 
             modelBuilder.Entity("AlzheimerDemencia.Models.PatientNote", b =>

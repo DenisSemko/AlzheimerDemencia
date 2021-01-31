@@ -1,28 +1,21 @@
-﻿using System;
+﻿using AlzheimerDemencia.Models;
+using AlzheimerDemencia.Repository.Abstract;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AlzheimerDemencia.Models;
-using AlzheimerDemencia.Repository.Abstract;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authorization;
 
-namespace AlzheimerDemencia.Controllers.Api
+namespace AlzheimerDemencia.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class TasksController : ControllerBase
     {
         private readonly IUserRepository userRepository;
 
-        public UsersController(IUserRepository userRepository)
+        public TasksController(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
         }
@@ -72,21 +65,12 @@ namespace AlzheimerDemencia.Controllers.Api
             }
         }
 
-
-        [HttpPut]
-        public async Task<ActionResult<User>> Update(User user)
-        {
-            var result = await userRepository.Update(user);
-            return result;
-        }
-
+        
         [HttpDelete("{id:Guid}")]
         public void DeleteById(Guid id)
         {
             userRepository.DeleteById(id);
             userRepository.Save();
         }
-
-        
     }
 }
